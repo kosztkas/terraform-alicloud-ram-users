@@ -16,7 +16,7 @@ You can use this in your terraform template with the following steps.
     
 Authors
 -------
-Created and maintained by Sandor Kosztka (sandor.kosztka@vodafone.com)
+Created and maintained by Sandor Kosztka (@kosztkas)
 
 Reference
 ---------
