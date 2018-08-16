@@ -1,15 +1,21 @@
 Alicloud RAM User Creation Terraform Module
 ===
 
-Terraform module which adds list of users with console logon and group membership
+Terraform module which adds list of users with console logon and group membership. 
+It assumes that you have RAM enabled already.
 
 Usage
 -----
 You can use this in your terraform template with the following steps.
 
-1. Adding a module resource to your template, e.g. main.tf
+1. Adding a module resource to your template, e.g. main.tf:
 
-2. Setting values for the following variables through environment variables:
+```
+ module "tf-security-group" {
+    source = "alibaba/security-group/alicloud"
+```
+
+2. Setting values for the following variables in the variables file or through the environment variables:
 
     - ALICLOUD_ACCESS_KEY
     - ALICLOUD_SECRET_KEY
