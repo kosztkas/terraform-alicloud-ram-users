@@ -11,8 +11,10 @@ You can use this in your terraform template with the following steps.
 1. Adding a module resource to your template, e.g. main.tf:
 
 ```
- module "tf-security-group" {
-    source = "alibaba/security-group/alicloud"
+module "ram-users" {
+  source  = "kosztkas/ram-users/alicloud"
+  version = "1.0.0"
+}
 ```
 
 2. Setting values for the following variables in the variables file or through the environment variables:
