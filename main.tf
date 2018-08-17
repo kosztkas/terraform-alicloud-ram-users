@@ -17,6 +17,11 @@ resource "alicloud_ram_login_profile" "profile" {
   depends_on = ["alicloud_ram_user.users"]
 }
 
+resource "alicloud_ram_group" "group" {
+  name = "${var.group_name}"
+  comments = "This is a group created by Terraform"
+}
+
 resource "alicloud_ram_group_membership" "membership" {
   group_name = "${var.group_name}"
   user_names = "${var.usernames}"
