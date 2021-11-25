@@ -1,24 +1,27 @@
 provider "alicloud" {
-    access_key = "${var.alicloud_access_key}"
-    secret_key = "${var.alicloud_secret_key}"
+#    access_key = "${var.alicloud_access_key}"
+#    secret_key = "${var.alicloud_secret_key}"
+    region     = var.region
+    profile    = var.profile
 }
 
 resource "alicloud_ram_user" "users" {
-  count = "${length(var.usernames)}"
-  name = "${element(var.usernames, count.index)}"
+  count        = "${length(var.usernames)}"
+  name         = "${element(var.usernames, count.index)}"
   display_name = "${element(var.dispnames, count.index)}"
-  email = "${element(var.emails, count.index)}"
+  email        = "${element(var.emails, count.index)}"
 }
 
 resource "alicloud_ram_login_profile" "profile" {
-  user_name = "${element(var.usernames, count.index)}"
-  password = "${var.password}"
+  count                   = "${length(var.usernames)}"
+  user_name               = "${element(var.usernames, count.index)}"
+  password                = "${var.password}"
   password_reset_required = "true"
-  depends_on = ["alicloud_ram_user.users"]
+  depends_on              = ["alicloud_ram_user.users"]
 }
 
 resource "alicloud_ram_group" "group" {
-  name = "${var.group_name}"
+  name     = "${var.group_name}"
   comments = "This is a group created by Terraform"
 }
 
